@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_try/slider_provider.dart';
 
 // to read const value that stae never change
 final hello = Provider<String>((ref) {
@@ -9,23 +10,30 @@ final age = Provider<int>((ref) {
   return 11;
 });
 
-class HomeScreen extends ConsumerStatefulWidget {
-  const HomeScreen({super.key});
+class HomeScreen extends ConsumerWidget {
+  HomeScreen({super.key});
 
   @override
-  ConsumerState<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends ConsumerState<HomeScreen> {
-  @override
-  Widget build(BuildContext context) {
-    final subscribe = ref.watch(hello);
-    final age1 = ref.watch(age);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final slider = ref.watch(slideProvider);
     return Scaffold(
-      body: Center(
-        child: Text(
-          subscribe + " " + " " + age1.toString(),
-        ),
+      appBar: AppBar(
+        title: Text('Counter App'),
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            height: 200,
+            width: 200,
+            color: Colors.red.withOpacity(slider),
+          ),
+          Slider(
+              value: slider,
+              onChanged: (value) {
+                ref.read(slideProvider.notifier).state == value;
+              })
+        ],
       ),
     );
   }
