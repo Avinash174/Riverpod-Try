@@ -9,17 +9,25 @@ final age = Provider<int>((ref) {
   return 11;
 });
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  ConsumerState<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends ConsumerState<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    final subscribe = ref.watch(hello);
+    final age1 = ref.watch(age);
+    return Scaffold(
+      body: Center(
+        child: Text(
+          subscribe + " " + " " + age1.toString(),
+        ),
+      ),
+    );
   }
 }
 
