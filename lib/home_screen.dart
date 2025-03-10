@@ -8,7 +8,7 @@ class HomeScreen extends ConsumerWidget {
     final appState = ref.watch(appStateProvider);
 
     return Scaffold(
-      appBar: AppBar(title: Text('State Management')),
+      appBar: AppBar(title: const Text('State Management')),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

@@ -38,7 +38,7 @@ class _CounterAppWithStatefulState
             return Center(
               child: Text(
                 counter1.toString(),
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.orange,
                   fontSize: 28,
                 ),
