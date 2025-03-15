@@ -22,9 +22,7 @@ class _MyAppState extends State<MyApp> {
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(
-            seedColor: Colors.deepPurple,
-          ),
+          primaryColor: Colors.blue,
           useMaterial3: true,
         ),
         home: const HomeScreen(),
