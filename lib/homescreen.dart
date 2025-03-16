@@ -32,6 +32,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       ),
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               myName + " " + age1.toString(),

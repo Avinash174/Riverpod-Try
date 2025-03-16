@@ -3,6 +3,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_try/counter_statful.dart';
 
 final hello = Provider<String>((ref) {
   return "Avinash";
@@ -33,6 +34,7 @@ class CounterWithStateless extends ConsumerWidget {
         ),
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Consumer(builder: (context, ref, child) {
             final counterIncr = ref.watch(conter);
@@ -67,32 +69,15 @@ class CounterWithStateless extends ConsumerWidget {
               },
             );
           }),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (_) => const CounterSwitchBtn()));
+            },
+            child: const Text('StateFul Couter & Switch Button'),
+          )
         ],
       ),
     );
   }
 }
-
-// class StateProviderExample extends ConsumerStatefulWidget {
-//   const StateProviderExample({super.key});
-
-//   @override
-//   ConsumerState<StateProviderExample> createState() =>
-//       _StateProviderExampleState();
-// }
-
-// class _StateProviderExampleState extends ConsumerState<StateProviderExample> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('Stateful Widget'),
-//       ),
-//       body: Center(
-//         child: Column(
-//           children: [],
-//         ),
-//       ),
-//     );
-//   }
-// }
