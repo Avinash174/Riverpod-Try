@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_try/stateless.dart';
+
+// we can't change his state
 
 final hello = Provider<String>((ref) {
   return "Avinash";
@@ -25,10 +28,32 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     final myName = ref.watch(hello);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Stateful Widget'),
+        title: const Text('Stateful Widget'),
       ),
       body: Center(
-        child: Text(myName + " " + age1.toString()),
+        child: Column(
+          children: [
+            Text(
+              myName + " " + age1.toString(),
+            ),
+            Column(
+              children: [
+                ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const CounterWithStateless(),
+                        ),
+                      );
+                    },
+                    child: const Text(
+                      'Stateless With Counter App',
+                    ))
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
