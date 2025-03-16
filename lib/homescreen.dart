@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_try/counter_stateless.dart';
 
+import 'package:riverpod_try/with_stateless.dart';
+
 // we can't change his state
 
 final hello = Provider<String>((ref) {
@@ -40,17 +42,31 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             Column(
               children: [
                 ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const CounterWithStateless(),
-                        ),
-                      );
-                    },
-                    child: const Text(
-                      'Stateless With Counter App',
-                    ))
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const CounterWithStateless(),
+                      ),
+                    );
+                  },
+                  child: const Text(
+                    'Stateless With Counter App',
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const HomeScreenWithStateless(),
+                      ),
+                    );
+                  },
+                  child: const Text(
+                    'Stateless With Name & Age Access',
+                  ),
+                ),
               ],
             )
           ],
@@ -59,22 +75,3 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     );
   }
 }
-
-// for stateless widget
-// class HomeScreen extends ConsumerWidget {
-//   const HomeScreen({super.key});
-
-//   @override
-//   Widget build(BuildContext context, WidgetRef ref) {
-//     final helloALl = ref.watch(hello);
-//     final ageMy = ref.watch(age);
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: const Text('stateless widget'),
-//       ),
-//       body: Center(
-//         child: Text(helloALl + " " + ageMy.toString()),
-//       ),
-//     );
-//   }
-// }
