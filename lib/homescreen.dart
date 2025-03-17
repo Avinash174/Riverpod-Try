@@ -29,6 +29,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     final age1 = ref.watch(age);
     final myName = ref.watch(hello);
     final search = ref.watch(searchNotifier);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Stateful Widget'),
@@ -75,8 +76,16 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 ),
                 Consumer(builder: (context, ref, child) {
                   final search = ref.watch(searchNotifier);
-                  return Text(search);
-                })
+                  return Text(search.search);
+                }),
+                Consumer(builder: (context, ref, child) {
+                  final change = ref.watch(searchNotifier);
+                  return Switch(
+                      value: change.isChange,
+                      onChanged: (value) {
+                        ref.read(searchNotifier.notifier).onChange(value);
+                      });
+                }),
               ],
             ),
           ],
